@@ -1,0 +1,543 @@
+[
+  {
+    "fingerprint": "x4d52df18",
+    "startsAt": "2026-10-25T07:00:00.000Z",
+    "labels": {
+      "alertname": "KubePodNotReady",
+      "severity": "warning",
+      "namespace": "demo-app",
+      "pod": "api-0"
+    },
+    "annotations": {
+      "summary": "Pod uzun süredir hazır değil"
+    },
+    "status": {
+      "state": "active"
+    }
+  },
+  {
+    "fingerprint": "xd1a9d922",
+    "startsAt": "2026-10-25T07:00:00.000Z",
+    "labels": {
+      "alertname": "KubePodNotReady",
+      "severity": "warning",
+      "namespace": "demo-app",
+      "pod": "worker-1"
+    },
+    "annotations": {
+      "summary": "Pod uzun süredir hazır değil"
+    },
+    "status": {
+      "state": "active"
+    }
+  },
+  {
+    "fingerprint": "x5d06e783",
+    "startsAt": "2026-10-25T07:00:00.000Z",
+    "labels": {
+      "alertname": "KubePodNotReady",
+      "severity": "warning",
+      "namespace": "demo-app",
+      "pod": "db-0"
+    },
+    "annotations": {
+      "summary": "Pod uzun süredir hazır değil"
+    },
+    "status": {
+      "state": "active"
+    }
+  },
+  {
+    "fingerprint": "x9e6b4e25",
+    "startsAt": "2026-10-25T07:00:00.000Z",
+    "labels": {
+      "alertname": "KubePodNotReady",
+      "severity": "warning",
+      "namespace": "demo-app",
+      "pod": "cache-1"
+    },
+    "annotations": {
+      "summary": "Pod uzun süredir hazır değil"
+    },
+    "status": {
+      "state": "active"
+    }
+  },
+  {
+    "fingerprint": "x417bf504",
+    "startsAt": "2026-10-25T07:00:00.000Z",
+    "labels": {
+      "alertname": "KubePodNotReady",
+      "severity": "warning",
+      "namespace": "demo-app",
+      "pod": "web-2"
+    },
+    "annotations": {
+      "summary": "Pod uzun süredir hazır değil"
+    },
+    "status": {
+      "state": "active"
+    }
+  },
+  {
+    "fingerprint": "x1a1d0f8a",
+    "startsAt": "2026-10-25T07:00:00.000Z",
+    "labels": {
+      "alertname": "KubePodNotReady",
+      "severity": "warning",
+      "namespace": "demo-app",
+      "pod": "queue-0"
+    },
+    "annotations": {
+      "summary": "Pod uzun süredir hazır değil"
+    },
+    "status": {
+      "state": "active"
+    }
+  },
+  {
+    "fingerprint": "x451dde3c",
+    "startsAt": "2026-10-25T07:00:00.000Z",
+    "labels": {
+      "alertname": "KubePodNotReady",
+      "severity": "warning",
+      "namespace": "demo-app",
+      "pod": "chat-1"
+    },
+    "annotations": {
+      "summary": "Pod uzun süredir hazır değil"
+    },
+    "status": {
+      "state": "active"
+    }
+  },
+  {
+    "fingerprint": "x4fce5e21",
+    "startsAt": "2026-10-25T07:00:00.000Z",
+    "labels": {
+      "alertname": "KubePodNotReady",
+      "severity": "warning",
+      "namespace": "demo-app",
+      "pod": "sync-3"
+    },
+    "annotations": {
+      "summary": "Pod uzun süredir hazır değil"
+    },
+    "status": {
+      "state": "active"
+    }
+  },
+  {
+    "fingerprint": "x309b7e74",
+    "startsAt": "2026-10-25T07:00:00.000Z",
+    "labels": {
+      "alertname": "KubeContainerWaiting",
+      "severity": "warning",
+      "namespace": "demo-app",
+      "pod": "api-0"
+    },
+    "annotations": {
+      "summary": "Konteyner bekleme durumunda"
+    },
+    "status": {
+      "state": "active"
+    }
+  },
+  {
+    "fingerprint": "x9fbd57c1",
+    "startsAt": "2026-10-25T07:00:00.000Z",
+    "labels": {
+      "alertname": "KubeContainerWaiting",
+      "severity": "warning",
+      "namespace": "demo-app",
+      "pod": "worker-1"
+    },
+    "annotations": {
+      "summary": "Konteyner bekleme durumunda"
+    },
+    "status": {
+      "state": "active"
+    }
+  },
+  {
+    "fingerprint": "x710ae7bc",
+    "startsAt": "2026-10-25T07:00:00.000Z",
+    "labels": {
+      "alertname": "KubeContainerWaiting",
+      "severity": "warning",
+      "namespace": "demo-app",
+      "pod": "db-0"
+    },
+    "annotations": {
+      "summary": "Konteyner bekleme durumunda"
+    },
+    "status": {
+      "state": "active"
+    }
+  },
+  {
+    "fingerprint": "x8aa844c8",
+    "startsAt": "2026-10-25T07:00:00.000Z",
+    "labels": {
+      "alertname": "KubeContainerWaiting",
+      "severity": "warning",
+      "namespace": "demo-app",
+      "pod": "cache-1"
+    },
+    "annotations": {
+      "summary": "Konteyner bekleme durumunda"
+    },
+    "status": {
+      "state": "active"
+    }
+  },
+  {
+    "fingerprint": "x2773adb9",
+    "startsAt": "2026-10-25T07:00:00.000Z",
+    "labels": {
+      "alertname": "KubeContainerWaiting",
+      "severity": "warning",
+      "namespace": "demo-app",
+      "pod": "web-2"
+    },
+    "annotations": {
+      "summary": "Konteyner bekleme durumunda"
+    },
+    "status": {
+      "state": "active"
+    }
+  },
+  {
+    "fingerprint": "x695ddf89",
+    "startsAt": "2026-10-25T07:00:00.000Z",
+    "labels": {
+      "alertname": "KubeContainerWaiting",
+      "severity": "warning",
+      "namespace": "demo-app",
+      "pod": "queue-0"
+    },
+    "annotations": {
+      "summary": "Konteyner bekleme durumunda"
+    },
+    "status": {
+      "state": "active"
+    }
+  },
+  {
+    "fingerprint": "x0367729a",
+    "startsAt": "2026-10-25T07:00:00.000Z",
+    "labels": {
+      "alertname": "KubeContainerWaiting",
+      "severity": "warning",
+      "namespace": "demo-app",
+      "pod": "chat-1"
+    },
+    "annotations": {
+      "summary": "Konteyner bekleme durumunda"
+    },
+    "status": {
+      "state": "active"
+    }
+  },
+  {
+    "fingerprint": "x58157264",
+    "startsAt": "2026-10-25T07:00:00.000Z",
+    "labels": {
+      "alertname": "KubeContainerWaiting",
+      "severity": "warning",
+      "namespace": "demo-app",
+      "pod": "sync-3"
+    },
+    "annotations": {
+      "summary": "Konteyner bekleme durumunda"
+    },
+    "status": {
+      "state": "active"
+    }
+  },
+  {
+    "fingerprint": "x089f9aa7",
+    "startsAt": "2026-10-25T07:00:00.000Z",
+    "labels": {
+      "alertname": "KubeDeploymentReplicasMismatch",
+      "severity": "warning",
+      "namespace": "demo-app",
+      "deployment": "api"
+    },
+    "annotations": {
+      "summary": "Deployment istenen kopya sayısında değil"
+    },
+    "status": {
+      "state": "active"
+    }
+  },
+  {
+    "fingerprint": "xeeddcf7c",
+    "startsAt": "2026-10-25T07:00:00.000Z",
+    "labels": {
+      "alertname": "KubeDeploymentReplicasMismatch",
+      "severity": "warning",
+      "namespace": "demo-app",
+      "deployment": "worker"
+    },
+    "annotations": {
+      "summary": "Deployment istenen kopya sayısında değil"
+    },
+    "status": {
+      "state": "active"
+    }
+  },
+  {
+    "fingerprint": "x4c781754",
+    "startsAt": "2026-10-25T07:00:00.000Z",
+    "labels": {
+      "alertname": "KubeDeploymentReplicasMismatch",
+      "severity": "warning",
+      "namespace": "demo-app",
+      "deployment": "web"
+    },
+    "annotations": {
+      "summary": "Deployment istenen kopya sayısında değil"
+    },
+    "status": {
+      "state": "active"
+    }
+  },
+  {
+    "fingerprint": "x759f2fae",
+    "startsAt": "2026-10-25T07:00:00.000Z",
+    "labels": {
+      "alertname": "KubeDeploymentReplicasMismatch",
+      "severity": "warning",
+      "namespace": "demo-app",
+      "deployment": "chat"
+    },
+    "annotations": {
+      "summary": "Deployment istenen kopya sayısında değil"
+    },
+    "status": {
+      "state": "active"
+    }
+  },
+  {
+    "fingerprint": "xfe8f938e",
+    "startsAt": "2026-10-25T07:00:00.000Z",
+    "labels": {
+      "alertname": "KubeDeploymentReplicasMismatch",
+      "severity": "warning",
+      "namespace": "demo-app",
+      "deployment": "sync"
+    },
+    "annotations": {
+      "summary": "Deployment istenen kopya sayısında değil"
+    },
+    "status": {
+      "state": "active"
+    }
+  },
+  {
+    "fingerprint": "x3989ff65",
+    "startsAt": "2026-10-25T07:00:00.000Z",
+    "labels": {
+      "alertname": "KubeDeploymentRolloutStuck",
+      "severity": "warning",
+      "namespace": "demo-app",
+      "deployment": "api"
+    },
+    "annotations": {
+      "summary": "Deployment güncellemesi takıldı"
+    },
+    "status": {
+      "state": "active"
+    }
+  },
+  {
+    "fingerprint": "xe6f5d843",
+    "startsAt": "2026-10-25T07:00:00.000Z",
+    "labels": {
+      "alertname": "KubeDeploymentRolloutStuck",
+      "severity": "warning",
+      "namespace": "demo-app",
+      "deployment": "worker"
+    },
+    "annotations": {
+      "summary": "Deployment güncellemesi takıldı"
+    },
+    "status": {
+      "state": "active"
+    }
+  },
+  {
+    "fingerprint": "xc9e0ca2d",
+    "startsAt": "2026-10-25T07:00:00.000Z",
+    "labels": {
+      "alertname": "KubeDeploymentRolloutStuck",
+      "severity": "warning",
+      "namespace": "demo-app",
+      "deployment": "web"
+    },
+    "annotations": {
+      "summary": "Deployment güncellemesi takıldı"
+    },
+    "status": {
+      "state": "active"
+    }
+  },
+  {
+    "fingerprint": "x76d0bcb3",
+    "startsAt": "2026-10-25T07:00:00.000Z",
+    "labels": {
+      "alertname": "KubeDeploymentRolloutStuck",
+      "severity": "warning",
+      "namespace": "demo-app",
+      "deployment": "chat"
+    },
+    "annotations": {
+      "summary": "Deployment güncellemesi takıldı"
+    },
+    "status": {
+      "state": "active"
+    }
+  },
+  {
+    "fingerprint": "x6f3603a0",
+    "startsAt": "2026-10-25T07:00:00.000Z",
+    "labels": {
+      "alertname": "KubeDeploymentRolloutStuck",
+      "severity": "warning",
+      "namespace": "demo-app",
+      "deployment": "sync"
+    },
+    "annotations": {
+      "summary": "Deployment güncellemesi takıldı"
+    },
+    "status": {
+      "state": "active"
+    }
+  },
+  {
+    "fingerprint": "x535c5e95",
+    "startsAt": "2026-10-25T07:00:00.000Z",
+    "labels": {
+      "alertname": "KubeStatefulSetReplicasMismatch",
+      "severity": "warning",
+      "namespace": "demo-app",
+      "statefulset": "db"
+    },
+    "annotations": {
+      "summary": "StatefulSet kopya sayısı uyuşmuyor"
+    },
+    "status": {
+      "state": "active"
+    }
+  },
+  {
+    "fingerprint": "x2424ca30",
+    "startsAt": "2026-10-25T07:00:00.000Z",
+    "labels": {
+      "alertname": "KubeStatefulSetReplicasMismatch",
+      "severity": "warning",
+      "namespace": "demo-app",
+      "statefulset": "cache"
+    },
+    "annotations": {
+      "summary": "StatefulSet kopya sayısı uyuşmuyor"
+    },
+    "status": {
+      "state": "active"
+    }
+  },
+  {
+    "fingerprint": "x6fde5631",
+    "startsAt": "2026-10-25T07:00:00.000Z",
+    "labels": {
+      "alertname": "KubeStatefulSetReplicasMismatch",
+      "severity": "warning",
+      "namespace": "demo-app",
+      "statefulset": "queue"
+    },
+    "annotations": {
+      "summary": "StatefulSet kopya sayısı uyuşmuyor"
+    },
+    "status": {
+      "state": "active"
+    }
+  },
+  {
+    "fingerprint": "x36d7bafa",
+    "startsAt": "2026-10-27T08:15:00.000Z",
+    "labels": {
+      "alertname": "EndpointDown",
+      "severity": "critical",
+      "namespace": "monitoring",
+      "instance": "https://ornek-site.example.com"
+    },
+    "annotations": {
+      "summary": "Endpoint erişilemiyor"
+    },
+    "status": {
+      "state": "active"
+    }
+  },
+  {
+    "fingerprint": "x81a71db1",
+    "startsAt": "2026-10-26T23:00:00.000Z",
+    "labels": {
+      "alertname": "NodeSystemdServiceFailed",
+      "severity": "warning",
+      "instance": "sunucu-1",
+      "name": "certbot.service"
+    },
+    "annotations": {
+      "summary": "Sunucuda bir servis başarısız oldu"
+    },
+    "status": {
+      "state": "active"
+    }
+  },
+  {
+    "fingerprint": "x10f0754f",
+    "startsAt": "2026-08-18T22:21:00.000Z",
+    "labels": {
+      "alertname": "Watchdog",
+      "severity": "none"
+    },
+    "annotations": {
+      "summary": "Alarm hattı çalışıyor"
+    },
+    "status": {
+      "state": "active"
+    }
+  },
+  {
+    "fingerprint": "xe4cbaeeb",
+    "startsAt": "2026-10-27T07:00:00.000Z",
+    "labels": {
+      "alertname": "InfoInhibitor",
+      "severity": "none",
+      "namespace": "demo-app"
+    },
+    "annotations": {
+      "summary": "Bilgi seviyesi alarmları bastırır"
+    },
+    "status": {
+      "state": "active"
+    }
+  },
+  {
+    "fingerprint": "x52cdf34d",
+    "startsAt": "2026-10-27T08:00:00.000Z",
+    "labels": {
+      "alertname": "KubeSomethingInfo",
+      "severity": "info",
+      "namespace": "demo-app",
+      "pod": "api-0"
+    },
+    "annotations": {
+      "summary": "Yalnızca bilgi"
+    },
+    "status": {
+      "state": "active"
+    }
+  }
+]
