@@ -4,7 +4,7 @@ Her adımı birlikte karara bağlayıp küçük küçük ilerliyoruz. Sıra ve k
 
 ## Aday adımlar
 
-1. **Ticket açma tuşu:** taslaktan, ticket sistemine tek tuşla kayıt açmak (kullanıcı basınca). Ticket sistemi seçilince bağlanır.
+1. ✅ **Ticket açma entegrasyonu hazır** (portal + Jira, deneme modunda). Kalan: yeni portalın API'si, canlıya geçiş kontrol listesi ([ENTEGRASYON.md](ENTEGRASYON.md)).
 2. **Kimlik:** SSO ile giriş, rol kontrolü, acil durum hesabı.
 3. **Sunucu durumu:** yalnızca aksiyon gerektiren durumlar (disk, servis hatası). Veri kaynağı: mevcut izleme sistemi (Prometheus), ek yetki gerektirmeden.
 4. **Güvenlik olayları (Wazuh):** kullanıcı Wazuh'un durumunu anlatınca; yalnızca seçili, aksiyon gerektiren olaylar.

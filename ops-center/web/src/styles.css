@@ -30,6 +30,11 @@ h2 { margin: 0; font-size: 18px; }
 .btn { background: var(--brand); color: #fff; border: 0; border-radius: 10px; padding: 8px 14px; font: inherit; font-weight: 700; cursor: pointer; }
 .btn.ghost { background: transparent; color: var(--ink); border: 1px solid var(--line); }
 .banner.err { background: var(--crit-soft); color: var(--crit); border-radius: 10px; padding: 10px 14px; margin-bottom: 12px; }
+.banner.warn { background: var(--warn-soft); color: var(--warn); border-radius: 10px; padding: 10px 14px; margin: 10px 0; }
+.result { display: grid; gap: 8px; background: var(--bg); border-radius: 12px; padding: 14px; margin: 12px 0; }
+.result > div { display: flex; justify-content: space-between; gap: 12px; }
+.result .bad { color: var(--crit); }
+button:disabled { opacity: 0.55; cursor: default; }
 .chips { display: flex; gap: 8px; flex-wrap: wrap; margin-bottom: 12px; }
 .chip { display: inline-flex; align-items: center; gap: 7px; border: 1px solid var(--line); background: var(--card); border-radius: 999px; padding: 4px 12px; font-size: 12.5px; }
 .chip i { width: 8px; height: 8px; border-radius: 50%; background: var(--ok); }

@@ -1,5 +1,8 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { fetchAlerts, fetchDraft, type AlertGroup, type CollectResult, type Severity, type TicketDraft } from "./api";
+import {
+  createTicket, fetchAlerts, fetchConfig, fetchDraft, retryJira,
+  type AlertGroup, type AppConfig, type CollectResult, type Severity, type TicketDraft, type TicketResult,
+} from "./api";
 
 const RANK: Record<Severity, number> = { critical: 3, warning: 2, info: 1, none: 0 };
 const SEV_LABEL: Record<Severity, string> = { critical: "Kritik", warning: "Uyarı", info: "Bilgi", none: "-" };
@@ -64,8 +67,13 @@ export function App() {
   const [source, setSource] = useState("all");
   const [byNs, setByNs] = useState(false);
   const [open, setOpen] = useState<Row | null>(null);
-  const [draft, setDraft] = useState<{ ok: true; d: TicketDraft; of: string } | { ok: false; msg: string } | null>(null);
+  const [draft, setDraft] = useState<{ ok: true; d: TicketDraft; of: string; key: string } | { ok: false; msg: string } | null>(null);
   const [now, setNow] = useState(Date.now());
+  const [cfg, setCfg] = useState<AppConfig | null>(null);
+  const [confirming, setConfirming] = useState(false);
+  const [busy, setBusy] = useState(false);
+  const [ticket, setTicket] = useState<TicketResult | null>(null);
+  const [ticketErr, setTicketErr] = useState<string | null>(null);
 
   const load = useCallback(async () => {
     try {
@@ -91,9 +99,46 @@ export function App() {
   // Açık çekmece, yenilenen veriyle güncel kalsın (alarm bittiyse kapansın).
   const current = open ? rows.find((r) => r.id === open.id) ?? null : null;
 
-  async function makeDraft(g: AlertGroup) {
+  useEffect(() => {
+    fetchConfig().then(setCfg).catch(() => setCfg(null));
+  }, []);
+
+  function closeDraft() {
+    setDraft(null);
+    setConfirming(false);
+    setTicket(null);
+    setTicketErr(null);
+  }
+
+  async function openTicket(key: string) {
+    setBusy(true);
+    setTicketErr(null);
     try {
-      setDraft({ ok: true, d: await fetchDraft(g.key), of: g.alertname });
+      setTicket(await createTicket(key));
+      setConfirming(false);
+    } catch (e) {
+      setTicketErr(e instanceof Error ? e.message : "Ticket açılamadı");
+      setConfirming(false);
+    }
+    setBusy(false);
+  }
+
+  async function retry(id: string) {
+    setBusy(true);
+    try {
+      setTicket(await retryJira(id));
+    } catch (e) {
+      setTicketErr(e instanceof Error ? e.message : "Tekrar denenemedi");
+    }
+    setBusy(false);
+  }
+
+  async function makeDraft(g: AlertGroup) {
+    setConfirming(false);
+    setTicket(null);
+    setTicketErr(null);
+    try {
+      setDraft({ ok: true, d: await fetchDraft(g.key), of: g.alertname, key: g.key });
     } catch (e) {
       setDraft({ ok: false, msg: e instanceof Error ? e.message : "Taslak üretilemedi" });
       void load();
@@ -195,27 +240,62 @@ export function App() {
       )}
 
       {draft && (
-        <div className="overlay" onClick={() => setDraft(null)}>
+        <div className="overlay" onClick={closeDraft}>
           <div className="modal" onClick={(e) => e.stopPropagation()}>
-            {draft.ok ? (
+            {!draft.ok ? (
+              <>
+                <h2>Taslak üretilemedi</h2>
+                <p>{draft.msg}</p>
+                <div className="row end"><button className="btn" onClick={closeDraft}>Tamam</button></div>
+              </>
+            ) : ticket ? (
+              <>
+                <h2>{ticket.duplicate ? "Bu alarm için ticket zaten açılmış" : "Ticket açıldı ✓"}</h2>
+                <div className="result">
+                  <div><span className="muted">Yeni portal</span><b>{ticket.id}</b></div>
+                  <div>
+                    <span className="muted">Jira</span>
+                    {ticket.jira.status === "synced" && <b>{ticket.jira.key} ✓</b>}
+                    {ticket.jira.status === "dry-run" && <b>{ticket.jira.key} <small className="muted">(deneme, Jira'ya gönderilmedi)</small></b>}
+                    {ticket.jira.status === "failed" && <b className="bad">Gönderilemedi <small>({ticket.jira.error ?? "hata"})</small></b>}
+                  </div>
+                </div>
+                {ticket.jira.status === "failed" && (
+                  <p className="muted">Ticket portalda kayıtlı, <b>kaybolmadı</b>. Jira'ya yeniden gönderebilirsin.</p>
+                )}
+                {ticketErr && <div className="banner err">{ticketErr}</div>}
+                <div className="row end">
+                  {ticket.jira.status === "failed" && <button className="btn" disabled={busy} onClick={() => void retry(ticket.id)}>Jira'yı tekrar dene</button>}
+                  <button className="btn ghost" onClick={closeDraft}>Kapat</button>
+                </div>
+              </>
+            ) : (
               <>
                 <h2>Ticket taslağı</h2>
-                <p className="muted">Bu taslak <b>henüz hiçbir yere kaydedilmedi</b>. Ticket sistemi bağlanınca buradan tek tuşla açılacak; şimdilik kopyalayabilirsin.</p>
+                {cfg?.tickets.jira === "dry-run" && (
+                  <div className="banner warn">Deneme modu: Jira'ya <b>gerçekten gönderilmeyecek</b>{cfg.tickets.portal === "local" ? " ve portal kaydı yalnızca bu bilgisayarda tutulacak" : ""}.</div>
+                )}
                 <div className="row"><span className="tag">{draft.d.team === "sec" ? "Siber Güvenlik" : "BT Destek"}</span><span className="tag">Öncelik: {draft.d.priority}</span></div>
                 <label>Başlık</label>
                 <input readOnly value={draft.d.title} />
                 <label>Açıklama</label>
                 <textarea readOnly value={draft.d.description} rows={9} />
-                <div className="row end">
-                  <button className="btn ghost" onClick={() => setDraft(null)}>Kapat</button>
-                  <button className="btn" onClick={() => void navigator.clipboard.writeText(`${draft.d.title}\n\n${draft.d.description}`)}>Kopyala</button>
-                </div>
-              </>
-            ) : (
-              <>
-                <h2>Taslak üretilemedi</h2>
-                <p>{draft.msg}</p>
-                <div className="row end"><button className="btn" onClick={() => setDraft(null)}>Tamam</button></div>
+                {ticketErr && <div className="banner err">{ticketErr}</div>}
+                {confirming ? (
+                  <>
+                    <p><b>Bu alarm için ticket hem yeni portala hem Jira'ya açılacak.</b> Onaylıyor musun?</p>
+                    <div className="row end">
+                      <button className="btn ghost" disabled={busy} onClick={() => setConfirming(false)}>Vazgeç</button>
+                      <button className="btn" disabled={busy} onClick={() => void openTicket(draft.key)}>{busy ? "Açılıyor…" : "Evet, aç"}</button>
+                    </div>
+                  </>
+                ) : (
+                  <div className="row end">
+                    <button className="btn ghost" onClick={closeDraft}>Kapat</button>
+                    <button className="btn ghost" onClick={() => void navigator.clipboard.writeText(`${draft.d.title}\n\n${draft.d.description}`)}>Kopyala</button>
+                    <button className="btn" onClick={() => setConfirming(true)}>Ticket oluştur</button>
+                  </div>
+                )}
               </>
             )}
           </div>
